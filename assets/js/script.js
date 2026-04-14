@@ -79,16 +79,44 @@ async function initWeatherAPI() {
     });
   }
 
+  // Try to get user's GPS location first
   if (navigator.geolocation) {
+    weatherContent.innerHTML = '<div class="loading-spinner"></div>';
     navigator.geolocation.getCurrentPosition(
       (position) => {
+        // Successfully got location - fetch weather for user's location
         fetchWeatherByCoords(position.coords.latitude, position.coords.longitude);
       },
-      () => {
-        fetchWeatherByCity('Manila');
-      }
+      (error) => {
+        // Geolocation denied or failed - try with IP-based location
+        console.log('Geolocation error:', error.message);
+        fetchWeatherByIP();
+      },
+      { timeout: 10000, maximumAge: 300000 }
     );
   } else {
+    // Geolocation not supported
+    fetchWeatherByIP();
+  }
+}
+
+// Fetch weather based on IP address using free API
+async function fetchWeatherByIP() {
+  const weatherContent = document.getElementById('weatherContent');
+  if (!weatherContent) return;
+
+  weatherContent.innerHTML = '<div class="loading-spinner"></div>';
+
+  try {
+    // Use ip-api.com to get approximate location
+    const ipResponse = await fetch('http://ip-api.com/json/?fields=lat,lon,city,country');
+    if (!ipResponse.ok) throw new Error('IP location failed');
+    const ipData = await ipResponse.json();
+    
+    // Now fetch weather for that location
+    fetchWeatherByCoords(ipData.lat, ipData.lon);
+  } catch (error) {
+    // Final fallback to Manila
     fetchWeatherByCity('Manila');
   }
 }
