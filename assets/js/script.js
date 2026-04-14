@@ -67,6 +67,8 @@ function initThemeToggle() {
   }
 }
 
+const OPENWEATHER_API_KEY = 'YOUR_API_KEY_HERE';
+
 async function initWeatherAPI() {
   const weatherContent = document.getElementById('weatherContent');
   const cityInput = document.getElementById('cityInput');
@@ -80,15 +82,138 @@ async function initWeatherAPI() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        fetchWeatherByLocation(position.coords.latitude, position.coords.longitude);
+        fetchWeatherByCoords(position.coords.latitude, position.coords.longitude);
       },
       () => {
-        fetchWeatherByLocation(10.3157, 124.9455);
+        fetchWeatherByCity('Manila');
       }
     );
   } else {
-    fetchWeatherByLocation(10.3157, 124.9455);
+    fetchWeatherByCity('Manila');
   }
+}
+
+async function fetchWeather() {
+  const city = document.getElementById('cityInput')?.value.trim();
+  const weatherContent = document.getElementById('weatherContent');
+  if (!weatherContent) return;
+
+  if (!city) {
+    weatherContent.innerHTML = '<p class="text-muted">Please enter a city name</p>';
+    return;
+  }
+
+  await fetchWeatherByCity(city);
+}
+
+async function fetchWeatherByCity(city) {
+  const weatherContent = document.getElementById('weatherContent');
+  if (!weatherContent) return;
+
+  weatherContent.innerHTML = '<div class="loading-spinner"></div>';
+
+  try {
+    if (OPENWEATHER_API_KEY === 'YOUR_API_KEY_HERE') {
+      throw new Error('API key not configured');
+    }
+
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${OPENWEATHER_API_KEY}&units=metric`
+    );
+
+    if (!response.ok) {
+      if (response.status === 404) {
+        throw new Error('City not found');
+      }
+      throw new Error('Weather request failed');
+    }
+
+    const data = await response.json();
+    displayWeather(data);
+    showToast('Weather updated!', 'success');
+  } catch (error) {
+    if (error.message === 'API key not configured') {
+      weatherContent.innerHTML = `
+        <div class="weather-result" style="text-align: center;">
+          <p style="color: var(--accent-orange); margin-bottom: 12px;">⚠️ API Key Required</p>
+          <p class="text-muted" style="font-size: 0.85rem;">Get free API key at <a href="https://openweathermap.org/api" target="_blank" style="color: var(--accent-cyan);">openweathermap.org</a></p>
+        </div>
+      `;
+    } else {
+      weatherContent.innerHTML = '<p class="text-muted">City not found. Try another.</p>';
+      showToast(error.message === 'City not found' ? 'City not found' : 'Error loading weather', 'error');
+    }
+  }
+}
+
+async function fetchWeatherByCoords(lat, lon) {
+  const weatherContent = document.getElementById('weatherContent');
+  if (!weatherContent) return;
+
+  weatherContent.innerHTML = '<div class="loading-spinner"></div>';
+
+  try {
+    if (OPENWEATHER_API_KEY === 'YOUR_API_KEY_HERE') {
+      throw new Error('API key not configured');
+    }
+
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_API_KEY}&units=metric`
+    );
+
+    if (!response.ok) throw new Error('Weather not found');
+    const data = await response.json();
+    displayWeather(data);
+  } catch (error) {
+    if (error.message === 'API key not configured') {
+      weatherContent.innerHTML = `
+        <div class="weather-result" style="text-align: center;">
+          <p style="color: var(--accent-orange); margin-bottom: 12px;">⚠️ API Key Required</p>
+          <p class="text-muted" style="font-size: 0.85rem;">Get free API key at openweathermap.org</p>
+        </div>
+      `;
+    } else {
+      weatherContent.innerHTML = '<p class="text-muted">Unable to load weather</p>';
+    }
+  }
+}
+
+function displayWeather(data) {
+  const weatherContent = document.getElementById('weatherContent');
+  if (!weatherContent) return;
+
+  const weatherIcons = {
+    'Clear': '☀️',
+    'Clouds': '☁️',
+    'Rain': '🌧️',
+    'Drizzle': '🌦️',
+    'Thunderstorm': '⛈️',
+    'Snow': '❄️',
+    'Mist': '🌫️',
+    'Fog': '🌫️',
+    'Haze': '🌫️'
+  };
+
+  const icon = weatherIcons[data.weather[0].main] || '🌤️';
+  const temp = Math.round(data.main.temp);
+  const condition = data.weather[0].description;
+  const humidity = data.main.humidity;
+  const windSpeed = Math.round(data.wind.speed * 3.6);
+  const cityName = data.name;
+  const country = data.sys.country;
+
+  weatherContent.innerHTML = `
+    <div class="weather-result">
+      <div class="weather-icon">${icon}</div>
+      <div class="weather-temp">${temp}°C</div>
+      <div class="weather-desc">${condition}</div>
+      <div class="weather-details">
+        <span>💧 ${humidity}%</span>
+        <span>💨 ${windSpeed} km/h</span>
+      </div>
+      <p class="text-muted mt-2">📍 ${cityName}, ${country}</p>
+    </div>
+  `;
 }
 
 async function fetchWeather() {
@@ -144,51 +269,6 @@ async function fetchWeather() {
   }
 }
 
-async function fetchWeatherByLocation(lat, lon) {
-  const weatherContent = document.getElementById('weatherContent');
-  if (!weatherContent) return;
-
-  weatherContent.innerHTML = '<div class="loading-spinner"></div>';
-
-  try {
-    const response = await fetch(`https://wttr.in/${lat},${lon}?format=j1`);
-    if (!response.ok) throw new Error('Weather not found');
-    const data = await response.json();
-    const current = data.current_condition[0];
-    const nearestArea = data.nearest_area ? data.nearest_area[0] : null;
-    const locationName = nearestArea ? nearestArea.areaName[0].value : nearestArea ? nearestArea.country[0].value : 'Unknown Location';
-    
-    const weatherIcons = {
-      'Clear': '☀️',
-      'Sunny': '☀️',
-      'Cloudy': '☁️',
-      'Overcast': '🌥️',
-      'Partly cloudy': '⛅',
-      'Rain': '🌧️',
-      'Light rain': '🌦️',
-      'Snow': '❄️',
-      'Thunderstorm': '⛈️',
-      'Fog': '🌫️'
-    };
-    const icon = weatherIcons[current.weatherDesc[0].value] || '🌤️';
-    
-    weatherContent.innerHTML = `
-      <div class="weather-result">
-        <div class="weather-icon">${icon}</div>
-        <div class="weather-temp">${current.temp_C}°C</div>
-        <div class="weather-desc">${current.weatherDesc[0].value}</div>
-        <div class="weather-details">
-          <span>💧 ${current.humidity}%</span>
-          <span>💨 ${current.windspeedKmph} km/h</span>
-        </div>
-        <p class="text-muted mt-2">📍 ${locationName}</p>
-      </div>
-    `;
-  } catch (error) {
-    weatherContent.innerHTML = '<p class="text-muted">Unable to load weather</p>';
-  }
-}
-
 async function fetchWeatherByGPS() {
   const weatherContent = document.getElementById('weatherContent');
   if (!weatherContent) return;
@@ -202,11 +282,11 @@ async function fetchWeatherByGPS() {
 
   navigator.geolocation.getCurrentPosition(
     (position) => {
-      fetchWeatherByLocation(position.coords.latitude, position.coords.longitude);
+      fetchWeatherByCoords(position.coords.latitude, position.coords.longitude);
       showToast('Location detected!', 'success');
     },
     (error) => {
-      fetchWeatherByLocation(10.3157, 124.9455);
+      fetchWeatherByCity('Manila');
       showToast('Using default location', 'error');
     }
   );
