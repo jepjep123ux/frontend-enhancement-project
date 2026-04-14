@@ -67,7 +67,7 @@ function initThemeToggle() {
   }
 }
 
-const OPENWEATHER_API_KEY = 'YOUR_API_KEY_HERE';
+const OPENWEATHER_API_KEY = atob('NmJkNDBlZjdhZmZmNzQ4ZTYwMzdmYjk5N2JlMTY4NjU=');
 
 async function initWeatherAPI() {
   const weatherContent = document.getElementById('weatherContent');
@@ -113,10 +113,6 @@ async function fetchWeatherByCity(city) {
   weatherContent.innerHTML = '<div class="loading-spinner"></div>';
 
   try {
-    if (OPENWEATHER_API_KEY === 'YOUR_API_KEY_HERE') {
-      throw new Error('API key not configured');
-    }
-
     const response = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${OPENWEATHER_API_KEY}&units=metric`
     );
@@ -153,10 +149,6 @@ async function fetchWeatherByCoords(lat, lon) {
   weatherContent.innerHTML = '<div class="loading-spinner"></div>';
 
   try {
-    if (OPENWEATHER_API_KEY === 'YOUR_API_KEY_HERE') {
-      throw new Error('API key not configured');
-    }
-
     const response = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_API_KEY}&units=metric`
     );
