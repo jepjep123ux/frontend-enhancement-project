@@ -117,7 +117,7 @@ Documentation 15 pts
 
 #### Bonus Challenges (Optional)
 
-##### Dark mode toggle 🌙
+##### Dark mode toggle
 
 ##### API integration (e.g., weather, quotes)
 
