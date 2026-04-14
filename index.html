@@ -1,26 +1,447 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Frontend Enhancement Project</title>
+  <title>Frontend Pro | Build Modern Web Experiences</title>
+  <meta name="description" content="Premium glassmorphism web design">
   <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
 </head>
 <body>
 
-  <!-- Navbar -->
-  <div id="navbar"></div>
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <button class="fab" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
 
-  <main>
-    <h1>Welcome to the Project</h1>
-    <p>Enhance this frontend!</p>
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">FP</span>
+        <span>Frontend Pro</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#widgets">Widgets</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li class="dropdown">
+          <span class="dropdown-toggle">Pages ▾</span>
+          <div class="dropdown-menu">
+            <a href="pages/about.html">About Us</a>
+            <a href="pages/contact.html">Contact</a>
+          </div>
+        </li>
+        <li>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+        </li>
+        <li><a href="#cta" class="nav-cta">Start Project</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
 
-    <button onclick="showAlert()">Click Me</button>
+  <main class="main-content">
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="hero-bg">
+        <div class="hero-glow hero-glow-1"></div>
+        <div class="hero-glow hero-glow-2"></div>
+        <div class="hero-grid"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-text">
+          <span class="hero-badge">🚀 Launch Your Project</span>
+          <h1>Build Modern Web <span>Experiences</span> That Feel Alive</h1>
+          <p class="hero-subtitle">Clean, powerful, production-grade web solutions with premium UI/UX design that captivates your audience and drives results.</p>
+          <div class="hero-buttons">
+            <button class="btn btn-primary" onclick="openModal()">
+              🚀 Launch Project
+            </button>
+            <button class="btn btn-secondary" onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})">
+              ✨ Explore Features
+            </button>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number">500+</span>
+              <span class="stat-label">Projects Delivered</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">98%</span>
+              <span class="stat-label">Client Satisfaction</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">24/7</span>
+              <span class="stat-label">Support Ready</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-dashboard">
+            <div class="dashboard-header">
+              <span class="dashboard-dot red"></span>
+              <span class="dashboard-dot yellow"></span>
+              <span class="dashboard-dot green"></span>
+            </div>
+            <div class="dashboard-content">
+              <div class="dashboard-card">
+                <div class="icon">🎨</div>
+                <h4>Design</h4>
+                <p>Glassmorphism</p>
+                <span class="trend">↑ 45%</span>
+              </div>
+              <div class="dashboard-card">
+                <div class="icon">⚡</div>
+                <h4>Performance</h4>
+                <p>Lightning Fast</p>
+                <span class="trend">↑ 89%</span>
+              </div>
+              <div class="dashboard-card">
+                <div class="icon">🔒</div>
+                <h4>Security</h4>
+                <p>Enterprise Grade</p>
+                <span class="trend">↑ 99%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section id="features" class="features reveal">
+      <h2 class="section-title">Why Choose Frontend Pro</h2>
+      <p class="section-subtitle">Everything you need to create an outstanding online presence that converts visitors into customers.</p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🎨</div>
+          <h3>Modern Design System</h3>
+          <p>Beautiful glassmorphism effects with smooth animations and modern typography that elevates your brand.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3>Fully Responsive UI</h3>
+          <p>Pixel-perfect layouts that adapt perfectly across all devices, from mobile to desktop and beyond.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Lightning Fast</h3>
+          <p>Optimized code ensures lightning-fast loading times and smooth 60fps interactions for the best UX.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Secure Architecture</h3>
+          <p>Enterprise-grade security measures protect your data and ensure reliable uptime always.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>SEO Optimized</h3>
+          <p>Built with best practices for search engines to help your business get found online and grow organically.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔄</div>
+          <h3>API Integration</h3>
+          <p>Seamlessly connect with APIs, third-party services, and build custom functionality with ease.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="services reveal">
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-subtitle">Comprehensive solutions tailored to your digital needs, delivered with precision and expertise.</p>
+      <div class="services-grid">
+        <div class="service-card active">
+          <div class="service-header">
+            <div class="service-icon">🌐</div>
+            <h3>Web Development</h3>
+          </div>
+          <p>Custom frontend development using modern technologies for performant, scalable applications.</p>
+          <div class="service-features">
+            <span class="service-tag">React / Vue</span>
+            <span class="service-tag">TypeScript</span>
+            <span class="service-tag">Responsive</span>
+            <span class="service-tag">PWA</span>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-header">
+            <div class="service-icon">🎭</div>
+            <h3>UI/UX Design</h3>
+          </div>
+          <p>User-centered design that combines aesthetics with functionality for optimal user experience.</p>
+          <div class="service-features">
+            <span class="service-tag">Wireframing</span>
+            <span class="service-tag">Prototyping</span>
+            <span class="service-tag">Design Systems</span>
+            <span class="service-tag">Animations</span>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-header">
+            <div class="service-icon">📊</div>
+            <h3>API Integration</h3>
+          </div>
+          <p>Build robust APIs and integrate third-party services to extend your application's capabilities.</p>
+          <div class="service-features">
+            <span class="service-tag">REST / GraphQL</span>
+            <span class="service-tag">Webhooks</span>
+            <span class="service-tag">Database</span>
+            <span class="service-tag">Docs</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WIDGETS SECTION -->
+    <section id="widgets" class="widgets reveal">
+      <h2 class="section-title">Live Widgets</h2>
+      <p class="section-subtitle">Interactive elements that showcase modern web functionality.</p>
+      <div class="widgets-grid">
+        <div class="widget-card">
+          <div class="widget-header">
+            <span class="widget-icon">🌦️</span>
+            <h3>Weather</h3>
+          </div>
+          <div class="weather-search">
+            <input type="text" id="cityInput" placeholder="Enter city name...">
+            <button onclick="fetchWeather()">Search</button>
+          </div>
+          <div id="weatherContent">
+            <div class="loading-spinner"></div>
+          </div>
+          <button class="location-btn" onclick="fetchWeatherByGPS()">📍 Use My Location</button>
+        </div>
+        <div class="widget-card">
+          <div class="widget-header">
+            <span class="widget-icon">💡</span>
+            <h3>Daily Inspiration</h3>
+          </div>
+          <div id="quoteContainer">
+            <div class="loading-spinner"></div>
+          </div>
+          <button class="refresh-btn" onclick="fetchQuote()">🔄 New Quote</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="testimonials reveal">
+      <h2 class="section-title">What Clients Say</h2>
+      <p class="section-subtitle">Trusted by businesses worldwide who have transformed their digital presence.</p>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-header">
+            <div class="testimonial-avatar">KJ</div>
+            <div class="testimonial-info">
+              <h4>Kerr Jubahib</h4>
+              <span>CEO, TechStart</span>
+            </div>
+          </div>
+          <p class="testimonial-text">"Outstanding work! The website exceeded our expectations. Modern, fast, and beautifully designed. Our conversion rate increased by 45%."</p>
+          <div class="testimonial-rating">★★★★★</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-header">
+            <div class="testimonial-avatar">KK</div>
+            <div class="testimonial-info">
+              <h4>Kerr Kerr</h4>
+              <span>Marketing Director</span>
+            </div>
+          </div>
+          <p class="testimonial-text">"The attention to detail and responsive design have significantly improved our user engagement. Highly recommended!"</p>
+          <div class="testimonial-rating">★★★★★</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-header">
+            <div class="testimonial-avatar">KV</div>
+            <div class="testimonial-info">
+              <h4>Kerr Vincent</h4>
+              <span>Founder, DesignCo</span>
+            </div>
+          </div>
+          <p class="testimonial-text">"Professional, timely, and exceptional quality. Highly recommended for any web project. They deliver beyond expectations."</p>
+          <div class="testimonial-rating">★★★★★</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section id="cta" class="cta reveal">
+      <div class="cta-bg">
+        <div class="cta-glow cta-glow-1"></div>
+      </div>
+      <div class="cta-content">
+        <h2>Let's Build Something Extraordinary Together</h2>
+        <p>Ready to transform your digital presence? Join hundreds of satisfied clients who have elevated their business.</p>
+        <div class="cta-buttons">
+          <button class="btn btn-primary" onclick="openModal()">
+            🚀 Start Project
+          </button>
+          <button class="btn btn-secondary" onclick="window.location.href='pages/contact.html'">
+            📬 Contact Us
+          </button>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <!-- Footer -->
-  <div id="footer"></div>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <span class="logo-icon">FP</span>
+            <span>Frontend Pro</span>
+          </a>
+          <p>Creating modern, beautiful, and functional web experiences for businesses worldwide.</p>
+        </div>
+        <div class="footer-links-group">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-group">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="pages/about.html">About Us</a></li>
+            <li><a href="pages/contact.html">Contact</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-group">
+          <h4>Connect</h4>
+          <div class="social-links">
+            <a href="#" title="Facebook">📘</a>
+            <a href="#" title="Twitter">🐦</a>
+            <a href="#" title="LinkedIn">💼</a>
+            <a href="#" title="GitHub">🐙</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Frontend Pro. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>🚀 Get Started</h2>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+      <form id="modalForm">
+        <div class="form-group">
+          <label for="modalName">Full Name *</label>
+          <input type="text" id="modalName" placeholder="Kerr Jubahib" required>
+        </div>
+        <div class="form-group">
+          <label for="modalEmail">Email Address *</label>
+          <input type="email" id="modalEmail" placeholder="kerr@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="modalService">Service Interest</label>
+          <select id="modalService">
+            <option value="">Select a service</option>
+            <option value="web-development">Web Development</option>
+            <option value="ui-design">UI/UX Design</option>
+            <option value="api-integration">API Integration</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Request</button>
+      </form>
+    </div>
+  </div>
 
   <script src="assets/js/script.js"></script>
+  <script>
+    // Scroll Progress
+    window.addEventListener('scroll', () => {
+      const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      document.getElementById('scrollProgress').style.width = scrolled + '%';
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile menu toggle
+    document.getElementById('hamburger').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('active');
+    });
+
+    // Reveal on scroll
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealOnScroll = () => {
+      const windowHeight = window.innerHeight;
+      revealElements.forEach(el => {
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 100) {
+          el.classList.add('visible');
+        }
+      });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+
+    // Theme toggle
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const html = document.documentElement;
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+    });
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    function updateActiveNav() {
+      const scrollY = window.scrollY;
+      
+      sections.forEach(section => {
+        const sectionHeight = section.offsetHeight;
+        const sectionTop = section.offsetTop - 100;
+        const sectionId = section.getAttribute('id');
+        
+        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + sectionId || 
+                link.getAttribute('href') === sectionId + '.html') {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveNav);
+    updateActiveNav();
+  </script>
 </body>
 </html>

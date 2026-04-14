@@ -1,9 +1,321 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" data-theme="dark">
 <head>
-  <title>About</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Frontend Pro</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
 </head>
 <body>
-  <h1>About Page</h1>
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <button class="fab" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-container">
+      <a href="../index.html" class="logo">
+        <span class="logo-icon">FP</span>
+        <span>Frontend Pro</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../index.html#features">Features</a></li>
+        <li><a href="../index.html#services">Services</a></li>
+        <li><a href="../index.html#widgets">Widgets</a></li>
+        <li><a href="../index.html#testimonials">Testimonials</a></li>
+        <li class="dropdown">
+          <span class="dropdown-toggle">Pages ▾</span>
+          <div class="dropdown-menu">
+            <a href="about.html" class="active">About Us</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </li>
+        <li>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+        </li>
+        <li><a href="contact.html" class="nav-cta">Get In Touch</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="hero-bg">
+        <div class="hero-glow hero-glow-1"></div>
+        <div class="hero-glow hero-glow-2"></div>
+        <div class="hero-grid"></div>
+      </div>
+      <div class="hero-content" style="display: block; text-align: center; max-width: 700px; margin: 0 auto;">
+        <div class="hero-text">
+          <span class="hero-badge">✨ About Us</span>
+          <h1 style="font-size: 2.75rem;">Crafting Digital <span>Excellence</span></h1>
+          <p class="hero-subtitle">We are a team of passionate developers and designers dedicated to creating modern, beautiful, and functional web experiences that drive results.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALUES SECTION -->
+    <section id="values" class="features reveal">
+      <h2 class="section-title">Our Values</h2>
+      <p class="section-subtitle">What drives us to deliver excellence in every project we undertake.</p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">💡</div>
+          <h3>Innovation</h3>
+          <p>We constantly explore new technologies and design trends to deliver cutting-edge solutions that keep you ahead.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>Quality</h3>
+          <p>Every project is crafted with attention to detail and a focus on user experience that delivers results.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🚀</div>
+          <h3>Performance</h3>
+          <p>Optimized code ensures fast loading times and smooth 60fps interactions across all devices.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🤝</div>
+          <h3>Collaboration</h3>
+          <p>We work closely with clients to understand their vision and deliver solutions that exceed expectations.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Security</h3>
+          <p>Enterprise-grade security measures protect your data and ensure peace of mind for your business.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📈</div>
+          <h3>Growth</h3>
+          <p>We help your business grow with scalable solutions that evolve and adapt with your changing needs.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS SECTION -->
+    <section class="stats-section reveal">
+      <div class="stats-container">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-number">500+</span>
+            <span class="stat-label">Projects Completed</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">98%</span>
+            <span class="stat-label">Client Satisfaction</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">5+</span>
+            <span class="stat-label">Years Experience</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">50+</span>
+            <span class="stat-label">Team Members</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section id="cta" class="cta reveal">
+      <div class="cta-bg">
+        <div class="cta-glow cta-glow-1"></div>
+      </div>
+      <div class="cta-content">
+        <h2>Ready to Work Together?</h2>
+        <p>Let's create something amazing. Get in touch with us today.</p>
+        <div class="cta-buttons">
+          <button class="btn btn-primary" onclick="window.location.href='contact.html'">📬 Contact Us</button>
+          <button class="btn btn-secondary" onclick="window.location.href='../index.html'">🏠 Back to Home</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="logo">
+            <span class="logo-icon">FP</span>
+            <span>Frontend Pro</span>
+          </a>
+          <p>Creating modern, beautiful, and functional web experiences for businesses worldwide.</p>
+        </div>
+        <div class="footer-links-group">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../index.html#features">Features</a></li>
+            <li><a href="../index.html#services">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-group">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-group">
+          <h4>Connect</h4>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+            <a href="#" aria-label="LinkedIn">💼</a>
+            <a href="#" aria-label="GitHub">🐙</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Frontend Pro. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/script.js"></script>
+  <script>
+    // Scroll Progress
+    window.addEventListener('scroll', () => {
+      const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      document.getElementById('scrollProgress').style.width = scrolled + '%';
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile menu toggle
+    document.getElementById('hamburger').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('active');
+    });
+
+    // Reveal on scroll
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealOnScroll = () => {
+      const windowHeight = window.innerHeight;
+      revealElements.forEach(el => {
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 100) {
+          el.classList.add('visible');
+        }
+      });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+
+    // Theme toggle
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const html = document.documentElement;
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+    });
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    function updateActiveNav() {
+      const scrollY = window.scrollY;
+      
+      sections.forEach(section => {
+        const sectionHeight = section.offsetHeight;
+        const sectionTop = section.offsetTop - 100;
+        const sectionId = section.getAttribute('id');
+        
+        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + sectionId || 
+                link.getAttribute('href') === sectionId + '.html') {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveNav);
+    updateActiveNav();
+  </script>
+
+  <style>
+    .stats-section {
+      padding: 80px 40px;
+      background: var(--bg-secondary);
+    }
+
+    .stats-container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 32px;
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent-purple);
+      box-shadow: var(--shadow-glow-purple);
+    }
+
+    .stat-card .stat-number {
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      margin-bottom: 8px;
+    }
+
+    .stat-card .stat-label {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 768px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stats-section {
+        padding: 60px 20px;
+      }
+    }
+  </style>
 </body>
 </html>
