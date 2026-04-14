@@ -108,13 +108,16 @@ async function fetchWeatherByIP() {
   weatherContent.innerHTML = '<div class="loading-spinner"></div>';
 
   try {
-    // Use ip-api.com to get approximate location
-    const ipResponse = await fetch('http://ip-api.com/json/?fields=lat,lon,city,country');
+    // Use ipwhois.io to get approximate location (free, no API key needed)
+    const ipResponse = await fetch('https://ipwho.is/');
     if (!ipResponse.ok) throw new Error('IP location failed');
     const ipData = await ipResponse.json();
     
-    // Now fetch weather for that location
-    fetchWeatherByCoords(ipData.lat, ipData.lon);
+    if (ipData.success) {
+      fetchWeatherByCoords(ipData.latitude, ipData.longitude);
+    } else {
+      throw new Error('IP location failed');
+    }
   } catch (error) {
     // Final fallback to Manila
     fetchWeatherByCity('Manila');
