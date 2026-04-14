@@ -1,9 +1,519 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" data-theme="dark">
 <head>
-  <title>Contact</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Frontend Pro</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
 </head>
 <body>
-  <h1>Contact Page</h1>
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <button class="fab" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-container">
+      <a href="../index.html" class="logo">
+        <span class="logo-icon">FP</span>
+        <span>Frontend Pro</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../index.html#features">Features</a></li>
+        <li><a href="../index.html#services">Services</a></li>
+        <li><a href="../index.html#widgets">Widgets</a></li>
+        <li><a href="../index.html#testimonials">Testimonials</a></li>
+        <li class="dropdown">
+          <span class="dropdown-toggle">Pages ▾</span>
+          <div class="dropdown-menu">
+            <a href="about.html">About Us</a>
+            <a href="contact.html" class="active">Contact</a>
+          </div>
+        </li>
+        <li>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+        </li>
+        <li><a href="#contact-form" class="nav-cta">Get In Touch</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="hero-bg">
+        <div class="hero-glow hero-glow-1"></div>
+        <div class="hero-glow hero-glow-2"></div>
+        <div class="hero-grid"></div>
+      </div>
+      <div class="hero-content" style="display: block; text-align: center; max-width: 700px; margin: 0 auto;">
+        <div class="hero-text">
+          <span class="hero-badge">📬 Get In Touch</span>
+          <h1 style="font-size: 2.75rem;">Let's Build Something <span>Amazing</span> Together</h1>
+          <p class="hero-subtitle">Have questions or want to work together? We'd love to hear from you. Reach out and let's create something extraordinary.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT FORM SECTION -->
+    <section id="contact-form" class="contact-section reveal">
+      <div class="contact-container">
+        <div class="contact-card">
+          <div class="contact-info">
+            <h2>Send us a Message</h2>
+            <p>Fill out the form and we'll get back to you within 24 hours.</p>
+            <div class="contact-methods">
+              <div class="contact-method">
+                <span class="contact-icon">📧</span>
+                <div>
+                  <h4>Email</h4>
+                  <p>hello@frontendpro.com</p>
+                </div>
+              </div>
+              <div class="contact-method">
+                <span class="contact-icon">📍</span>
+                <div>
+                  <h4>Location</h4>
+                  <p>Your Location (via GPS)</p>
+                </div>
+              </div>
+              <div class="contact-method">
+                <span class="contact-icon">📱</span>
+                <div>
+                  <h4>Phone</h4>
+                  <p>+1 (555) 123-4567</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <form id="contactForm" class="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" placeholder="Kerr Jubahib" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" placeholder="kerr@example.com" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" placeholder="Project inquiry">
+            </div>
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea id="message" rows="8" placeholder="Tell us about your project, goals, and how we can help..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+              🚀 Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAP SECTION -->
+    <section class="map-section reveal">
+      <h2 class="section-title" style="margin-bottom: 32px;">Find Us</h2>
+      <div class="map-wrapper">
+        <div id="mapEmbed" class="map-embed">
+          <div class="map-loading">
+            <div style="text-align: center;">
+              <div class="loading-spinner" style="margin: 0 auto 12px;"></div>
+              <span>Detecting your location...</span>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-secondary location-search-btn" onclick="openMapInNewTab()">
+          🌐 Open in Google Maps
+        </button>
+      </div>
+    </section>
+
+    <!-- SOCIAL CTA -->
+    <section class="cta reveal">
+      <div class="cta-bg">
+        <div class="cta-glow cta-glow-1"></div>
+      </div>
+      <div class="cta-content">
+        <h2>Follow Our Journey</h2>
+        <p>Stay updated with our latest projects, tips, and industry insights.</p>
+        <div class="social-links" style="justify-content: center; margin-top: 2rem; gap: 16px;">
+          <a href="#" aria-label="Facebook" style="width: 52px; height: 52px; font-size: 1.25rem;">📘</a>
+          <a href="#" aria-label="Twitter" style="width: 52px; height: 52px; font-size: 1.25rem;">🐦</a>
+          <a href="#" aria-label="LinkedIn" style="width: 52px; height: 52px; font-size: 1.25rem;">💼</a>
+          <a href="#" aria-label="GitHub" style="width: 52px; height: 52px; font-size: 1.25rem;">🐙</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="logo">
+            <span class="logo-icon">FP</span>
+            <span>Frontend Pro</span>
+          </a>
+          <p>Creating modern, beautiful, and functional web experiences for businesses worldwide.</p>
+        </div>
+        <div class="footer-links-group">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../index.html#features">Features</a></li>
+            <li><a href="../index.html#services">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-group">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-group">
+          <h4>Connect</h4>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+            <a href="#" aria-label="LinkedIn">💼</a>
+            <a href="#" aria-label="GitHub">🐙</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Frontend Pro. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/script.js"></script>
+  <script>
+    // Scroll Progress
+    window.addEventListener('scroll', () => {
+      const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      document.getElementById('scrollProgress').style.width = scrolled + '%';
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile menu toggle
+    document.getElementById('hamburger').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('active');
+    });
+
+    // Reveal on scroll
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealOnScroll = () => {
+      const windowHeight = window.innerHeight;
+      revealElements.forEach(el => {
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 100) {
+          el.classList.add('visible');
+        }
+      });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+
+// Theme toggle
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const html = document.documentElement;
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+    });
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    function updateActiveNav() {
+      const scrollY = window.scrollY;
+      
+      sections.forEach(section => {
+        const sectionHeight = section.offsetHeight;
+        const sectionTop = section.offsetTop - 100;
+        const sectionId = section.getAttribute('id');
+        
+        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + sectionId || 
+                link.getAttribute('href') === sectionId + '.html') {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveNav);
+    updateActiveNav();
+
+    // Map with user location
+    function initMap() {
+      const mapEmbed = document.getElementById('mapEmbed');
+      if (!mapEmbed) return;
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            mapEmbed.innerHTML = `<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000!2d${lng}!3d${lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDEwJzAwLjAiTiAxMjLCsDQ5JzAwLjAiRQ!5e0!3m2!1sen!2sph!4v1" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>`;
+          },
+          () => {
+            mapEmbed.innerHTML = `<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d158846.47544748457!2d123.8157929748538!3d10.315697993705893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33aa3dc2bc9e66f1%3A0x19c2a3b9b2f8e1d9!2sCebu+City%2C+Cebu%2C+Philippines!5e0!3m2!1sen!2sph!4v1700000000000!5m2!1sen!2sph" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>`;
+          }
+        );
+      } else {
+        mapEmbed.innerHTML = `<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d158846.47544748457!2d123.8157929748538!3d10.315697993705893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33aa3dc2bc9e66f1%3A0x19c2a3b9b2f8e1d9!2sCebu+City%2C+Cebu%2C+Philippines!5e0!3m2!1sen!2sph!4v1700000000000!5m2!1sen!2sph" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>`;
+      }
+    }
+
+    function openMapInNewTab() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            window.open(`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`, '_blank');
+          },
+          () => {
+            window.open('https://www.google.com/maps', '_blank');
+          }
+        );
+      } else {
+        window.open('https://www.google.com/maps', '_blank');
+      }
+    }
+
+    window.addEventListener('load', initMap);
+    window.openMapInNewTab = openMapInNewTab;
+  </script>
+
+  <style>
+    .contact-section {
+      padding: 80px 40px;
+    }
+
+    .contact-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .contact-card {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 40px;
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 40px;
+    }
+
+    .contact-info h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .contact-info > p {
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
+      transition: var(--transition);
+    }
+
+    .contact-method:hover {
+      border-color: var(--accent-purple);
+      transform: translateX(4px);
+    }
+
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--gradient-hero);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .contact-method h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .contact-method p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .contact-form .form-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .contact-form .form-group input,
+    .contact-form .form-group select,
+    .contact-form .form-group textarea {
+      width: 100%;
+      padding: 14px 18px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      color: var(--text-primary);
+      font-size: 1rem;
+      font-family: inherit;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .contact-form .form-group input::placeholder,
+    .contact-form .form-group textarea::placeholder {
+      color: var(--text-muted);
+    }
+
+    .contact-form .form-group input:focus,
+    .contact-form .form-group select:focus,
+    .contact-form .form-group textarea:focus {
+      border-color: var(--accent-purple);
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+    }
+
+    .contact-form .form-group textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    .contact-form .btn-primary {
+      padding: 16px 32px;
+      font-size: 1rem;
+      margin-top: 8px;
+      transition: var(--transition);
+    }
+
+    .contact-form .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-glow-purple);
+    }
+      min-height: 140px;
+    }
+
+    .map-section {
+      padding: 0 40px 80px;
+    }
+
+    .map-wrapper {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .map-embed {
+      width: 100%;
+      height: 400px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow-md);
+      background: var(--bg-card);
+    }
+
+    .map-loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .location-search-btn {
+      display: block;
+      margin: 20px auto 0;
+      padding: 12px 24px;
+    }
+
+    [data-theme="dark"] .map-embed iframe {
+      filter: invert(92%) grayscale(20%);
+    }
+
+    @media (max-width: 768px) {
+      .contact-card {
+        grid-template-columns: 1fr;
+        padding: 24px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-section,
+      .map-section {
+        padding: 60px 20px;
+      }
+    }
+  </style>
 </body>
 </html>
