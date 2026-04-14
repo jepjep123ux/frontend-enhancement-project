@@ -20,8 +20,6 @@ Resolve merge conflicts (basic level)
 
 ### Project Requirements
 
-1. Student Tasks
-
 #### Step 1: Clone the Repository
 
 git clone <repo-url>
