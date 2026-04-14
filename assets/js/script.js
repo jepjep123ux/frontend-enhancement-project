@@ -77,9 +77,18 @@ async function initWeatherAPI() {
     });
   }
 
-  setTimeout(() => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        fetchWeatherByLocation(position.coords.latitude, position.coords.longitude);
+      },
+      () => {
+        fetchWeatherByLocation(10.3157, 124.9455);
+      }
+    );
+  } else {
     fetchWeatherByLocation(10.3157, 124.9455);
-  }, 500);
+  }
 }
 
 async function fetchWeather() {
@@ -99,6 +108,8 @@ async function fetchWeather() {
     if (!response.ok) throw new Error('Weather not found');
     const data = await response.json();
     const current = data.current_condition[0];
+    const nearestArea = data.nearest_area ? data.nearest_area[0] : null;
+    const locationName = nearestArea ? nearestArea.areaName[0].value : city;
     
     const weatherIcons = {
       'Clear': '☀️',
@@ -123,7 +134,7 @@ async function fetchWeather() {
           <span>💧 ${current.humidity}%</span>
           <span>💨 ${current.windspeedKmph} km/h</span>
         </div>
-        <p class="text-muted mt-2">${city}</p>
+        <p class="text-muted mt-2">📍 ${locationName}</p>
       </div>
     `;
     showToast('Weather updated!', 'success');
@@ -144,6 +155,8 @@ async function fetchWeatherByLocation(lat, lon) {
     if (!response.ok) throw new Error('Weather not found');
     const data = await response.json();
     const current = data.current_condition[0];
+    const nearestArea = data.nearest_area ? data.nearest_area[0] : null;
+    const locationName = nearestArea ? nearestArea.areaName[0].value : nearestArea ? nearestArea.country[0].value : 'Unknown Location';
     
     const weatherIcons = {
       'Clear': '☀️',
@@ -168,7 +181,7 @@ async function fetchWeatherByLocation(lat, lon) {
           <span>💧 ${current.humidity}%</span>
           <span>💨 ${current.windspeedKmph} km/h</span>
         </div>
-        <p class="text-muted mt-2">📍 Philippines</p>
+        <p class="text-muted mt-2">📍 ${locationName}</p>
       </div>
     `;
   } catch (error) {
@@ -194,7 +207,7 @@ async function fetchWeatherByGPS() {
     },
     (error) => {
       fetchWeatherByLocation(10.3157, 124.9455);
-      showToast('Using default location (Philippines)', 'success');
+      showToast('Using default location', 'error');
     }
   );
 }
